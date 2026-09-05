@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кофе · утренняя чашка (s1)</title>
+    <style>
+        /* base reset для email-friendly блока */
+        .coffee-block * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.2;
+        }
+        .coffee-block {
+            max-width: 600px;  /* классическая ширина email / лендинга */
+            margin: 0 auto;
+            background: #ffffff;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        }
+        /* заголовок использует другую гарнитуру */
+        .coffee-title {
+            font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+        }
+        /* фоновая плашка features */
+        .feature-card {
+            background: #FDF8F2;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        /* сетка для двух колонок */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            text-align: center;
+        }
+        .feature-item {
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 32px;  /* iconSize */
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+        .feature-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #4A3728;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        }
+        .feature-desc {
+            font-size: 14px;
+            color: #4A3728;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            opacity: 0.9;
+        }
+        /*!* кнопка *!*/
+        /*.coffee-button {*/
+        /*    display: inline-block;*/
+        /*    background: #C7A17B;*/
+        /*    color: #FFFFFF;*/
+        /*    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;*/
+        /*    font-size: 16px;*/
+        /*    font-weight: 500;*/
+        /*    padding: 14px 32px;*/
+        /*    border-radius: 40px;*/
+        /*    text-decoration: none;*/
+        /*    text-align: center;*/
+        /*    border: none;*/
+        /*    transition: background 0.2s;*/
+        /*}*/
+        /*.coffee-button:hover {*/
+        /*    background: #b3895e;*/
+        /*}*/
+        /* центровка по умолчанию */
+        .align-center {
+            text-align: center;
+        }
+        .margin-center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* изображение */
+        .coffee-image {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+        /* маленький текст доставки */
+        .delivery-note {
+            font-style: italic;
+            font-size: 13px;
+            color: #9B7B5E;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        }
+        /* универсальные отступы */
+        .mt-24 { margin-top: 24px; }
+        .mb-8 { margin-bottom: 8px; }
+        .mb-24 { margin-bottom: 24px; }
+    </style>
+    <!-- подключаем шрифты (для веба) – для писем лучше использовать системные, но оставим как в шаблоне -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0; padding:20px; background:#f2ebe5; display:flex; justify-content:center;">
+    <!-- сам блок — точно по шаблону type = s1 -->
+    <div class="coffee-block" style="background:#ffffff; border-radius:24px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.05);">
+
+        <!-- 1. image -->
+        <img class="coffee-image" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&auto=format&fit=crop" alt="Кофе" style="display:block; width:100%; height:300px; object-fit:cover; border-radius:16px;">
+
+        <!-- 2. title -->
+        <div class="align-center coffee-title mt-24 mb-8" style="font-family:'Cormorant Garamond', 'Georgia', serif; font-size:32px; font-weight:600; color:#4A3728; line-height:1.2; padding:0 16px;">
+            ☕ Ваша утренняя чашка кофе
+        </div>
+
+        <!-- 3. text (описание) -->
+        <div class="align-center" style="font-family:'Inter', 'Helvetica Neue', Arial, sans-serif; font-size:16px; color:#6B4F3F; line-height:1.6; max-width:500px; margin-left:auto; margin-right:auto; margin-bottom:24px; padding:0 16px;">
+            Каждое утро мы обжариваем свежие зерна, чтобы вы могли насладиться идеальным эспрессо. В этом месяце у нас появились новые сорта из Эфиопии и Колумбии.
+        </div>
+
+        <!-- 4. features (2 колонки) с фоном и отступами -->
+        <div class="feature-card" style="background:#FDF8F2; border-radius:12px; padding:20px; margin:0 16px 24px 16px;">
+            <div class="features-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: center;">
+                <!-- feature 1 -->
+                <div class="feature-item">
+                    <div class="feature-icon" style="font-size:32px; line-height:1.2;">🫘</div>
+                    <div class="feature-title" style="font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:#4A3728;">Свежая обжарка</div>
+                    <div class="feature-desc" style="font-family:'Inter',sans-serif; font-size:14px; color:#4A3728;">Вчерашний урожай</div>
+                </div>
+                <!-- feature 2 -->
+                <div class="feature-item">
+                    <div class="feature-icon" style="font-size:32px; line-height:1.2;">🌱</div>
+                    <div class="feature-title" style="font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:#4A3728;">Органик</div>
+                    <div class="feature-desc" style="font-family:'Inter',sans-serif; font-size:14px; color:#4A3728;">Сертифицировано</div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 6. text (доставка) -->
+        <div class="align-center delivery-note" style="text-align:center; font-family:'Inter',sans-serif; font-size:13px; color:#9B7B5E; font-style:italic; padding:0 16px 24px 16px;">
+            🚚 Бесплатная доставка от 1500₽
+        </div>
+
+    </div>
+    <!-- примечание: все размеры, цвета, отступы точно соответствуют шаблону -->
+</body>
+</html>

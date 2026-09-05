@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <script src="https://unpkg.com/imask"></script>
+  <meta charset="UTF-8">
+  <title>HTML конструктор писем</title>
+  <link rel="icon" href="res/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap" rel="stylesheet">   <!--шрифт-->
+</head>
+<body>
+<div class="navbar">
+    <div class="nav-left no-select">
+        <img src="res/logo.png" alt="лого" width="30" height="30">
+        <h2>Ванесики</h2>
+    </div>
+    <div class="nav-center no-select">
+        <a href="#constructor">Шаблон</a>
+      <a href="#journal-section">Журнал</a>
+    </div>
+    <div class="nav-right no-select">
+        <a href="#constructor" class="quick-template">
+            <i class="fas fa-plus-circle"></i>
+            Быстрый шаблон
+        </a>
+    </div>
+</div>
+<div class="hero-section no-select">
+    <div class="hero-overlay no-select">
+        <div class="hero-content no-select">
+            <h1>HTML-конструктор</h1>
+            <p>Простой конструктор для email рассылок</p>
+            <a href="#constructor" class="hero-button">Попробовать</a>
+        </div>
+    </div>
+</div>
+
+<!--шаблоны-->
+  <div class="card" id="constructor">
+    <div class="builder-header">
+      <h2>Конструктор письма</h2>
+      <div class="panel templates">
+        <div class="template-card" onclick="loadTemplate('template1')">
+          <img src="res/template1.png" alt="шаблон1">
+        </div>
+        <div class="template-card" onclick="loadTemplate('template2')">
+          <img src="res/template2.png" alt="шаблон2">
+        </div>
+        <div class="template-card" onclick="loadTemplate('template3')">
+          <img src="res/template3.png" alt="шаблон3">
+        </div>
+        <div class="template-card" onclick="loadTemplate('template4')">
+          <img src="res/template4.png" alt="шаблон4">
+        </div>
+      </div>
+      <p class="subtitle">Выбирайте элементы - слева, настраивайте их параметры - справа!</p>
+    </div>
+
+<!--левая панель-->
+    <div class="builder">
+      <div class="panel"> 
+        <h3>Блоки</h3>
+        <div class="block" draggable="true" data-type="title">Заголовок</div>
+        <div class="block" draggable="true" data-type="text">Текст</div>
+        <div class="block" draggable="true" data-type="image">Фото</div>
+        <div class="block" draggable="true" data-type="link">Ссылка</div>
+      </div>
+
+<!--центральная панель-->
+      <div class="panel">
+        <h3>Письмо</h3>
+        <div id="dropZone" class="drop-zone"></div>
+        <button class="button preview-btn" onclick="generateHTML()">Предпросмотр</button>
+        <button onclick="saveUserTemplate()" class="btn-save-tpl">Сохранить шаблон</button>
+        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+          Загрузить HTML шаблон
+        </button>
+        <input type="file" id="fileInput" style="display: none;" accept=".html" onchange="uploadUserFile(event)">
+      </div>
+
+<!--правая панель-->
+      <div class="panel">
+        <h3>Свойства</h3>
+        <div id="propsEmpty">Выберите блок</div>
+
+<!--свойства заголовка-->
+        <div id="propsTitle" class="props">
+          <div class="props-section">
+            <h4>Содержимое</h4>
+            <label>Текст</label>
+            <input id="propTitleText" value="Заголовок">
+          </div>
+          <div class="props-section">
+            <h4>Выравнивание</h4>
+            <select id="propTitleAlign">
+              <option value="left">Слева</option>
+              <option value="center">По центру</option>
+              <option value="right">Справа</option>
+            </select>
+          </div>
+          <div class="props-section">
+            <h4>Шрифт</h4>
+            <label>Размер (px)</label>
+            <input id="propTitleFontSize" type="number" min="8" max="72" value="32">
+            <label>Шрифт</label>
+            <select id="propTitleFontFamily">
+              <option value="Unbounded">Unbounded</option>
+              <option value="Arial">Arial</option>
+              <option value="Helvetica">Helvetica</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Georgia">Georgia</option>
+            </select>
+            <label>Цвет</label>
+            <input id="propTitleColor" type="color" value="#000000">
+            <label>Толщина</label>
+            <select id="propTitleFontWeight">
+              <option value="300">Light</option>
+              <option value="400">Normal</option>
+              <option value="600">Semi-bold</option>
+              <option value="700">Bold</option>
+              <option value="900">Black</option>
+            </select>
+          </div>
+        </div>
+
+<!--свойства текста-->
+        <div id="propsText" class="props">
+          <div class="props-section">
+            <h4>Содержимое</h4>
+            <label>Текст</label>
+            <textarea id="propTextText" rows="4">Текст сообщения</textarea>
+          </div>
+          <div class="props-section">
+            <h4>Выравнивание</h4>
+            <select id="propTextAlign">
+              <option value="left">Слева</option>
+              <option value="center">По центру</option>
+              <option value="right">Справа</option>
+              <option value="justify">По ширине</option>
+            </select>
+          </div>
+          <div class="props-section">
+            <h4>Шрифт</h4>
+            <label>Размер (px)</label>
+            <input id="propTextFontSize" type="number" min="8" max="72" value="16">
+            <label>Семейство</label>
+            <select id="propTextFontFamily">
+              <option value="Unbounded">Unbounded</option>
+              <option value="Arial">Arial</option>
+              <option value="Helvetica">Helvetica</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Georgia">Georgia</option>
+            </select>
+            <label>Цвет</label>
+            <input id="propTextColor" type="color" value="#000000">
+            <label>Межстрочный интервал</label>
+            <input id="propTextLineHeight" type="number" min="1" max="3" step="0.1" value="1.5">
+          </div>
+        </div>
+
+<!--свойства изображения-->
+        <div id="propsImage" class="props">
+          <div class="props-section">
+            <h4>Изображение</h4>
+            <div class="button-row">
+              <button class="button secondary" onclick="triggerImageUpload()">
+                <i class="fas fa-upload"></i> Загрузить фото
+              </button>
+              <button class="button secondary" onclick="document.getElementById('imageReplaceInput').click()">
+                <i class="fas fa-sync-alt"></i> Заменить
+              </button>
+            </div>
+            <input type="file" id="imageReplaceInput" accept="image/*" style="display: none;" onchange="replaceImage(event)">
+            <div class="input-with-button">
+              <input id="propImageSrc" placeholder="URL изображения" value="https://via.placeholder.com/300x200">
+              <button onclick="window.open(document.getElementById('propImageSrc').value, '_blank')" title="Открыть URL">
+                <i class="fas fa-external-link-alt"></i>
+              </button>
+            </div>
+            <div class="input-group">
+              <label>Альтернативный текст</label>
+              <input id="propImageAlt" placeholder="Альтернативный текст" value="Изображение">
+            </div>
+          </div>
+          <div class="props-section">
+            <h4>Выравнивание</h4>
+            <select id="propImageAlign" class="full-width">
+              <option value="left">Слева</option>
+              <option value="center" selected>По центру</option>
+              <option value="right">Справа</option>
+            </select>
+          </div>
+          <div class="props-section">
+            <h4>Размеры</h4>
+            <div class="input-group">
+              <label>Ширина</label>
+              <input id="propImageWidth" placeholder="100% или 600px" value="100%">
+            </div>
+            <div class="input-group">
+              <label>Скругление (px)</label>
+              <input id="propImageBorderRadius" type="number" min="0" max="50" value="8">
+            </div>
+          </div>
+          <div id="imagePreview" class="preview-block" style="display: none;">
+            <h4>Предпросмотр</h4>
+            <img src="" alt="Предпросмотр">
+          </div>
+        </div>
+
+<!--свойства ссылки-->
+        <div id="propsLink" class="props">
+          <div class="props-section">
+            <h4>Содержимое</h4>
+            <label>Текст</label>
+            <input id="propLinkText" value="Ссылка">
+            <label>URL</label>
+            <input id="propLinkUrl" placeholder="https://..." value="https://example.com">
+          </div>
+          <div class="props-section">
+            <h4>Выравнивание</h4>
+            <select id="propLinkAlign">
+              <option value="left">Слева</option>
+              <option value="center">По центру</option>
+              <option value="right">Справа</option>
+            </select>
+          </div>
+          <div class="props-section">
+            <h4>Шрифт</h4>
+            <label>Размер (px)</label>
+            <input id="propLinkFontSize" type="number" min="8" max="72" value="16">
+            <label>Семейство</label>
+            <select id="propLinkFontFamily">
+              <option value="Unbounded">Unbounded</option>
+              <option value="Arial">Arial</option>
+              <option value="Helvetica">Helvetica</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Georgia">Georgia</option>
+            </select>
+            <label>Цвет</label>
+            <input id="propLinkColor" type="color" value="#0066cc">
+          </div>
+          <div class="props-section">
+            <h4>Оформление</h4>
+            <label>Подчеркивание</label>
+            <select id="propLinkDecoration">
+              <option value="underline">Подчеркнутый</option>
+              <option value="none">Без подчеркивания</option>
+            </select>
+          </div>
+        </div>
+        <div class="props-actions">
+          <button class="button secondary" onclick="duplicateBlock()">Дублировать</button>
+          <button class="button secondary" onclick="deleteBlock()">Удалить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Основная карточка на странице -->
+    <div class="card" id="customer-data">
+      <h2>Данные заказчика</h2>
+      <p class="subtitle">Выбор клиента из базы 1С</p>
+      <div class="customer-search">
+        <div class="customer-selector">
+          <label for="customerSelect" class="detail-label">Выберите заказчика:</label>
+          <select id="customerSelect" class="customer-select">
+            <option value="">-- Выберите из списка --</option>
+          </select>
+        </div>
+      </div>
+      <div id="customerDetails" class="customer-details">
+        <h3>Информация о заказчике</h3>
+        <div class="details-grid">
+          <div class="detail-item">
+            <span class="detail-label">ФИО:</span>
+            <span class="detail-value" id="customerFIO">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Email:</span>
+            <span class="detail-value" id="customerEmail">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Телефон:</span>
+            <span class="detail-value" id="customerPhone">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Кнопка, которая открывает окно -->
+      <button onclick="openModal()" class="btn-add">Добавить заказчика</button>
+    </div>
+
+<!--нижняя панель-->
+    <div class="panel" style="grid-column: 1 / -1; margin-top: 20px;">
+      <div class="preview-header">
+        <h3>Предпросмотр</h3>
+        <button class="button send-btn" onclick="sendEmail()">
+          <i class="fas fa-paper-plane"></i> Отправить письмо
+        </button>
+      </div>
+      <iframe id="preview" title="Предпросмотр письма"></iframe>
+    </div>
+  </div>
+
+  <!--журнал-->
+<div id="journal-section" class="card journal-card">
+  <div class="card-header">
+    <h2>Журнал</h2>
+    <p class="subtitle">Просмотр отправленных писем</p>
+  </div>
+  <div class="table-container">
+    <table class="journal-table">
+      <thead>
+      <tr>
+        <th>Дата</th>
+        <th>Получатель</th>
+        <th>Тема</th>
+        <th class="text-center">Статус</th>
+      </tr>
+      </thead>
+      <tbody id="journal-body">
+      <tr>
+        <td>26.04.2026 19:20</td>
+        <td>test@test.com</td>
+        <td class="text-center"><span class="status status-delivered">Доставлено</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--подвал-->
+  <div class="card footer-card">
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="footer-logo">
+            <span class="footer-brand">Ванесики</span>
+          </div>
+          <a href="#" class="footer-learn-more" onclick="loadManagementContacts(); return false;">
+            контакты для связи
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!--Окно при нажатии кнопки "Контакты для связи" -->
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal()">&times;</span>
+    <h2 id="modalTitle">Контакты руководства</h2>
+    <div id="contactsContainer">
+    </div>
+  </div>
+</div>
+<script src="sc.js"></script>
+</body>
+</html>
+<div id="modalAdd" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Новый заказчик</h2>
+    <div class="modal-body">
+      <input type="text" id="new-fio" placeholder="ФИО">
+      <input type="text" id="new-phone" placeholder="8 (___) ___-__-__">
+      <input type="email" id="new-email" placeholder="Email">
+      <button onclick="saveClient()" class="btn-save">Добавить заказчика</button>
+    </div>
+  </div>
+</div>

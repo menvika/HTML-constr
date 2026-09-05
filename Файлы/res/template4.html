@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Привет · спасибо за подписку</title>
+    <!-- подключаем шрифт Unbounded (современный гротеск) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* сброс и контейнер */
+        .welcome-block * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .welcome-block {
+            max-width: 520px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            font-family: 'Unbounded', 'Helvetica Neue', Arial, sans-serif;
+            padding: 40px 32px;
+            border-radius: 32px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
+            border: 1px solid #F0F0F0;
+        }
+        /* заголовок */
+        .greeting-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #000000;
+            line-height: 1.2;
+            margin-bottom: 0.5rem; /* небольшой отступ зададим отдельно, но шаблон не указывает margin, поэтому будет естественный */
+        }
+        /* текст благодарности */
+        .thanks-text {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 16px;
+            color: #000000;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        .align-left {
+            text-align: left;
+        }
+    </style>
+</head>
+<body style="margin:0; background:#F7F5F2; padding:30px 20px; display:flex; justify-content:center; align-items:center; min-height:100vh;">
+    <!-- чистый блок template4 -->
+    <div class="welcome-block" style="background:#FFFFFF; border-radius:32px; padding:40px 32px; max-width:520px; border:1px solid #F0F0F0;">
+
+        <!-- 1. title "Привет!" с выравниванием влево -->
+        <div class="greeting-title align-left" style="font-family:'Unbounded',sans-serif; font-size:28px; font-weight:600; color:#000000; text-align:left; margin-bottom:12px;">
+            Привет!
+        </div>
+
+        <!-- 2. text "Спасибо за подписку" (margin не задан, но добавим небольшой верхний отступ для читаемости — 8px, хотя в шаблоне только align, но так естественно) -->
+        <div class="thanks-text align-left" style="font-family:'Unbounded',sans-serif; font-size:16px; color:#000000; line-height:1.5; text-align:left;">
+            Спасибо за подписку
+        </div>
+
+        <!-- дизайн полностью соответствует JSON: никаких лишних элементов, только два текстовых блока -->
+    </div>
+</body>
+</html>

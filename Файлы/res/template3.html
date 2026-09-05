@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пора в отпуск · горящие туры</title>
+    <!-- шрифты: Playfair Display (заголовок), Montserrat (всё остальное), Inter (предупреждение) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,700&family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* базовый контейнер */
+        .travel-block * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .travel-block {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+            padding: 24px 24px 32px 24px;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px rgba(0,40,30,0.1);
+        }
+        /* изображение (верхнее) */
+        .hero-image {
+            display: block;
+            width: 100%;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            object-fit: cover;
+            aspect-ratio: 16 / 9;
+        }
+        /* главный заголовок */
+        .main-headline {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #1B4D3E;
+            text-align: center;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+        /* подзаголовок (subtitle) */
+        .subhead {
+            font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #2C6E5F;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        /* сетка карточек 2 колонки */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        /* одна карточка */
+        .tour-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 14px rgba(27,77,62,0.08);
+            transition: transform 0.2s ease;
+            text-align: left; /* внутреннее выравнивание, но сама карточка центрируется в grid */
+        }
+        .tour-card:hover {
+            transform: translateY(-4px);
+        }
+        .card-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+        }
+        .card-content {
+            padding: 14px 12px 16px 12px;
+        }
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1B4D3E;
+            margin-bottom: 6px;
+        }
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #1B4D3E;
+        }
+        .card-price {
+            font-weight: 700;
+            background: #FFEAD2;
+            padding: 4px 8px;
+            border-radius: 30px;
+            color: #1B4D3E;
+        }
+        .card-days {
+            font-weight: 500;
+            color: #2C6E5F;
+        }
+        /* кнопка с тенью */
+        .travel-button {
+            display: inline-block;
+            background-color: #FFB347;
+            color: #1B4D3E;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 16px 48px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 16px rgba(255,179,71,0.3);
+            transition: all 0.2s;
+            border: none;
+            text-align: center;
+        }
+        .travel-button:hover {
+            background-color: #f9a334;
+            box-shadow: 0 10px 20px rgba(255,179,71,0.4);
+            transform: scale(1.02);
+        }
+        /* центровка */
+        .align-center {
+            text-align: center;
+        }
+        /* оранжевый текст внизу */
+        .last-call {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #E67E22;
+            margin-top: 16px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .mb-32 { margin-bottom: 32px; }
+    </style>
+</head>
+<body style="margin:0; background:#E2F0EC; padding:30px 16px; display:flex; justify-content:center;">
+    <div class="travel-block" style="background:#FFFFFF; border-radius:32px; padding:24px 24px 32px 24px; max-width:700px;">
+        <img class="hero-image" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format&fit=crop" alt="Путешествие" style="display:block; width:100%; border-radius:20px; margin-bottom:24px; aspect-ratio:16/9; object-fit:cover;">
+        <div class="main-headline" style="font-family:'Playfair Display',serif; font-size:42px; font-weight:700; color:#1B4D3E; text-align:center; margin-bottom:16px; line-height:1.1;">
+            Пора в отпуск ✈️
+        </div>
+        <div class="subhead" style="font-family:'Montserrat',sans-serif; font-size:18px; font-weight:400; color:#2C6E5F; text-align:center; margin-bottom:32px;">
+            Горящие туры на майские праздники
+        </div>
+
+        <!-- 4 карточки -->
+        <div class="cards-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:32px;">
+
+            <!-- карточка 1: Венеция -->
+            <div class="tour-card" style="background:#FFFFFF; border-radius:12px; overflow:hidden; box-shadow:0 6px 14px rgba(27,77,62,0.08); text-align:left;">
+                <img class="card-image" src="https://avatars.mds.yandex.net/i?id=cddb798f0903d2a6274e03f69bc25e2488c99786-11932091-images-thumbs&n=13" alt="Венеция" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+                <div class="card-content" style="padding:14px 12px 16px 12px;">
+                    <div class="card-title" style="font-family:'Montserrat',sans-serif; font-size:18px; font-weight:700; color:#1B4D3E; margin-bottom:6px;">Венеция</div>
+                    <div class="card-details" style="display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                        <span class="card-price" style="font-weight:700; background:#FFEAD2; padding:4px 8px; border-radius:30px; color:#1B4D3E;">от 45 000 ₽</span>
+                        <span class="card-days" style="font-weight:500; color:#2C6E5F;">5 ночей</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- карточка 2: Париж -->
+            <div class="tour-card" style="background:#FFFFFF; border-radius:12px; overflow:hidden; box-shadow:0 6px 14px rgba(27,77,62,0.08); text-align:left;">
+                <img class="card-image" src="https://avatars.mds.yandex.net/i?id=913cb5626095177f892a103a937c67bf9d6c93ff-8985546-images-thumbs&n=13" alt="Париж" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+                <div class="card-content" style="padding:14px 12px 16px 12px;">
+                    <div class="card-title" style="font-family:'Montserrat',sans-serif; font-size:18px; font-weight:700; color:#1B4D3E; margin-bottom:6px;">Париж</div>
+                    <div class="card-details" style="display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                        <span class="card-price" style="font-weight:700; background:#FFEAD2; padding:4px 8px; border-radius:30px; color:#1B4D3E;">от 52 000 ₽</span>
+                        <span class="card-days" style="font-weight:500; color:#2C6E5F;">6 ночей</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- карточка 3: Барселона -->
+            <div class="tour-card" style="background:#FFFFFF; border-radius:12px; overflow:hidden; box-shadow:0 6px 14px rgba(27,77,62,0.08); text-align:left;">
+                <img class="card-image" src="https://avatars.mds.yandex.net/i?id=d109414d839bfecd3a99b9d66c8786f8f7d8ccda-3904495-images-thumbs&n=13" alt="Барселона" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+                <div class="card-content" style="padding:14px 12px 16px 12px;">
+                    <div class="card-title" style="font-family:'Montserrat',sans-serif; font-size:18px; font-weight:700; color:#1B4D3E; margin-bottom:6px;">Барселона</div>
+                    <div class="card-details" style="display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                        <span class="card-price" style="font-weight:700; background:#FFEAD2; padding:4px 8px; border-radius:30px; color:#1B4D3E;">от 48 000 ₽</span>
+                        <span class="card-days" style="font-weight:500; color:#2C6E5F;">5 ночей</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- карточка 4: Амстердам -->
+            <div class="tour-card" style="background:#FFFFFF; border-radius:12px; overflow:hidden; box-shadow:0 6px 14px rgba(27,77,62,0.08); text-align:left;">
+                <img class="card-image" src="https://avatars.mds.yandex.net/i?id=ffdcfcacbaa27c949114690ec2020af6a8663cb9-4766993-images-thumbs&n=13" alt="Амстердам" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+                <div class="card-content" style="padding:14px 12px 16px 12px;">
+                    <div class="card-title" style="font-family:'Montserrat',sans-serif; font-size:18px; font-weight:700; color:#1B4D3E; margin-bottom:6px;">Амстердам</div>
+                    <div class="card-details" style="display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                        <span class="card-price" style="font-weight:700; background:#FFEAD2; padding:4px 8px; border-radius:30px; color:#1B4D3E;">от 49 000 ₽</span>
+                        <span class="card-days" style="font-weight:500; color:#2C6E5F;">4 ночи</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. text (оранжевый предупредительный) -->
+        <div class="last-call" style="font-family:'Inter',sans-serif; font-size:14px; color:#E67E22; margin-top:16px; text-align:center; font-weight:500;">
+            Осталось всего 5 горящих направлений!
+        </div>
+    </div>
+</body>
+</html>
